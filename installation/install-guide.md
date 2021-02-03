@@ -129,7 +129,7 @@ yum install cortex
 
 ⚠️   **We do not recommend that configuration for production servers**
 
-Once the package is installed, [install the analyzers](#analyzers-and-responders) as outlined in the next section and proceed to the configuration using the [Quick Start Guide](../admin/quick-start.md). For more advanced configuration options, please refer to the [Administration Guide](../admin/admin-guide.md).
+Once the package is installed, [install the analyzers](#analyzers-and-responders-1) as outlined in the next section and proceed to the configuration using the [Quick Start Guide](../admin/quick-start.md). For more advanced configuration options, please refer to the [Administration Guide](../admin/admin-guide.md).
 
 ---
 
