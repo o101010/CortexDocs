@@ -14,7 +14,7 @@ This administration guide applies to Cortex 2 only.
     * [Analyzers](#analyzers)
   * [Application Configuration](#application-configuration)
     * [Database](#database)
-    * [Analyzers](#analyzers-1)
+    * [Analyzers and responders](##analyzers-and-responders)
     * [Authentication](#authentication)
       * [OAuth2/OpenID Connect](#OAuth2openid-connect)	
     * [Cache](#cache)
