@@ -569,8 +569,9 @@ Analyzers and Responders are autonomous applications managed by and run through 
 They are included in the Docker image but must be installed separately if you are using binary, RPM or DEB packages.
 
 ### Installation
-Currently, all the analyzers and responders supported by TheHive Project are written in Python 2 or 3. They don't require any build phase but their dependencies have
-to be installed. Before proceeding, you'll need to install the system package dependencies that are required by some of them:
+Most of them are available in Docker's containers and do not require any additional parameterization.
+
+For those that are not available throught container, all the analyzers and responders supported by TheHive Project are written in Python 2 or 3. They don't require any build phase but their dependencies have to be installed. Before proceeding, you'll need to install the system package dependencies that are required by some of them:
 
 ```
 sudo apt-get install -y --no-install-recommends python-pip python2.7-dev python3-pip python3-dev ssdeep libfuzzy-dev libfuzzy2 libimage-exiftool-perl libmagic1 build-essential git libssl-dev
@@ -662,7 +663,7 @@ The following analyzers are not supported by TheHive Project at this time:
 If, for some reason, you need to install Elasticsearch, it can be installed using a system package or a Docker image. The latter is preferred as its installation and update are easier.
 
 ### System Package
-Install the Elasticsearch package provided by Elastic:
+Install the Elasticsearch package provided by Elastic on Debian based ditribution:
 ```
 # PGP key installation
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key D88E42B4
@@ -682,6 +683,7 @@ sudo apt update && sudo apt install elasticsearch
 
 The Debian package does not start up the service by default,  to prevent the instance from accidentally joining a cluster, without being configured appropriately.
 
+For other kind of Linux distribution see [Elastic's documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html).
 If you prefer using Elasticsearch inside a docker, see
 [Elasticsearch inside a Docker](#elasticsearch-inside-a-docker).
 
@@ -689,14 +691,14 @@ If you prefer using Elasticsearch inside a docker, see
 It is **highly recommended** to avoid exposing this service to an untrusted zone.
 
 If Elasticsearch and Cortex run on the same host (and not in a docker), edit `/etc/elasticsearch/elasticsearch.yml` and
-set `network.host` parameter with `127.0.0.1`. Cortex use dynamic scripts to make partial updates. Hence, they must be activated using `script.inline: on`.
+set `network.host` parameter with `127.0.0.1`.
 
 The cluster name must also be set (`hive` for example). Threadpool queue size must be set with a high value (`100000`). The default size will get the queue easily overloaded.
 
 Edit `/etc/elasticsearch/elasticsearch.yml` and add the following lines:
 
 ```
-http.host: 127.0.0.1
+network.host: 127.0.0.1
 cluster.name: hive
 thread_pool.search.queue_size: 100000
 ```
